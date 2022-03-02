@@ -44,6 +44,7 @@ function ValidPassword($errors, $value1,$key1, $min, $value2, $key2) {
     }
     return $errors;
 }
+
 // function ValidConfirmPassword($value1,$value2) {
 //     if(!empty($value1)) {
 //                 if($value1 != $value2) {
@@ -51,6 +52,31 @@ function ValidPassword($errors, $value1,$key1, $min, $value2, $key2) {
 //                 }
 //             }
 // }
+
+function validationId_user($errors,$value,$key)
+{
+    if(!empty($value)) {
+        if (!filter_var($value, FILTER_VALIDATE_INT)) {
+            $errors[$key] = 'Veuillez renseigner un nombre entier';
+        } 
+    } else {
+        $errors[$key] = 'Veuillez renseigner un id_user';
+    }
+    return $errors;
+}
+
+function validationStatus($errors,$value,$key,$lesStatus)
+{
+    if(!empty($value)) {
+        if(!in_array($value,$lesStatus)) {
+            $errors[$key] = 'Erreur';
+        }
+    } else {
+        $errors[$key] = 'Veuillez renseigner un statut';
+    }
+    return $errors;
+}
+
 function spanErrors($errors,$key){
     if(!empty($errors[$key])) {
         echo $errors[$key];
