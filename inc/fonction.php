@@ -132,3 +132,6 @@ function urlRemovelast($url) {
     array_pop($url);
     return implode('/', $url);
 }
+function formatDate($value) {
+    return date('d/m/Y H:i', strtotime($value));
+}

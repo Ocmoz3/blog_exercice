@@ -83,3 +83,11 @@ body{
     text-align: center;
     padding: 20px;
 }
+.wrap_article{
+    max-width: 800px; width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+.wrap_article p {
+    padding: .7rem 0;
+}
