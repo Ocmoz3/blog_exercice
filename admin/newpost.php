@@ -17,8 +17,8 @@ if(!empty($_POST['submitted'])) {
     $user_id = trim(strip_tags($_POST['status']));
 
 
-    $errors = Validpseudo($errors,$title,'title');
-    $errors = Validpseudo($errors,$content,'content');
+    $errors = Validpseudo($errors,$title,'title', 1, 255);
+    $errors = Validpseudo($errors,$content,'content', 1, 65535);
     $errors = validationId_user($errors,$user_id,'user_id');
     $errors = validationStatus($errors,$status,'status',$lesStatus);
 
@@ -28,12 +28,12 @@ if(!empty($_POST['submitted'])) {
 
 include('inc/header.php');
 ?>
-<div class="wrap">
+<div class="wrapform">
     <section id="articles">
             <?php if($success) {
         echo '<p>Bravo</p>';
     } else { ?>
-    <form action="" method="POST" novalidate>
+    <form class="form" action="" method="POST" novalidate>
         <label for="title">Titre</label>
         <input type="text" name="title" id="title" value="<?php if(!empty($_POST['title']) ) { echo $_POST['title']; } ?>">
         <span class="error"><?php if(!empty($errors['title'])) {echo $errors['title']; } ?></span>
@@ -48,18 +48,15 @@ include('inc/header.php');
 
         <label for="status">Status</label>
             <select name="status" id="status">
-                <?php foreach ($lesStatus as  $value) { ?>
+                <?php foreach ($lesStatus as $value) { ?>
                     <option value="<?php echo $value; ?>"<?php
                     if(!empty($_POST['status']) && $_POST['status'] === $value) {
                         echo ' selected';
-                    }elseif (!empty($acteur['status'])) { if($acteur['status'] === $value) { echo ' selected';} }
+                    } elseif (!empty($status['status'])) { if($status['status'] === $value) { echo ' selected';} }
                     ?>><?php echo ucfirst($value); ?></option>
                 <?php } ?>
             </select>
         <span class="error"><?php if(!empty($errors['status'])) { echo $errors['status']; } ?></span>
-
-
-
 
         <input type="submit" name="submitted" value="Envoyer">
     </form>

@@ -14,7 +14,7 @@ if(!empty($_POST['submitted'])) {
     $title = trim(strip_tags($_POST['title']));
     $content = trim(strip_tags($_POST['content']));
     $user_id = trim(strip_tags($_POST['user_id']));
-    $user_id = trim(strip_tags($_POST['status']));
+    $status = trim(strip_tags($_POST['status']));
 
 
     $errors = Validpseudo($errors,$title,'title', 1, 255);
@@ -36,15 +36,15 @@ if(!empty($_POST['submitted'])) {
 
 include('inc/header.php'); ?>
 
-<div class="wrap">
+<div class="wrapform">
     <section id="articles">
             <?php if($success) {
         echo '<p>Bravo</p>';
     } else { ?>
 
-    <form class="wrapform" action="" method="post" novalidate>
+    <form class="form" action="" method="post" novalidate>
         <label for="title">Titre</label>
-        <input type="text" name="title" id="title" value="<?php 
+        <input class= "input" type="text" name="title" id="title" value="<?php 
         if(!empty($_POST['title'])) {
             echo $_POST['title'];
         } elseif (!empty($article['title'])) { 
@@ -53,7 +53,7 @@ include('inc/header.php'); ?>
         <span class="error"><?php spanErrors($errors,'title'); ?></span>
 
         <label for="content">Contenu</label>
-        <input type="text" name="content" id="content" value="<?php 
+        <input class= "input" type="text" name="content" id="content" value="<?php 
         if(!empty($_POST['content'])) {
             echo $_POST['content'];
         } elseif (!empty($article['content'])) { 

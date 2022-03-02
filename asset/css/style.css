@@ -30,6 +30,7 @@ body{
     /* border: 1px solid green; */
     padding: 30px;
 }
+
 #menu ul{
     display: flex;
     justify-content: start;
@@ -37,6 +38,7 @@ body{
     font-family: 'arial';
     font-weight: bold;
 }
+
 #footer{
     background-color: #8892BF;
     text-align: center;
