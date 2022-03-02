@@ -3,6 +3,7 @@
 require('inc/pdo.php');
 require('inc/fonction.php');
 
+// $sql = "SELECT * FROM blog_articles"
 
 
 // debug($_SESSION);
@@ -10,7 +11,6 @@ require('inc/fonction.php');
 
 include('inc/header.php');
 ?>
-
 
 
 
