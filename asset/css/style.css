@@ -78,3 +78,8 @@ body{
     font-size: .7rem;
     margin-bottom: .8rem;
 }
+.titrePage {
+    /* border: 1px solid red; */
+    text-align: center;
+    padding: 20px;
+}

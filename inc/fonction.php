@@ -118,3 +118,17 @@ function isLogged() {
     }
     return false;
 }
+function isLoggedAdmin(){
+    if(isLogged()) {
+        if($_SESSION['user']['role'] === 'admin') {
+            return true;
+        }
+    }
+    return false;
+}
+
+function urlRemovelast($url) {
+    $url = explode('/', $url);
+    array_pop($url);
+    return implode('/', $url);
+}

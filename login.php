@@ -28,9 +28,12 @@ debug($user);
                 'role' => $user['role'],
                 'ip' => $_SERVER['REMOTE_ADDR'],
             );
-            header('Location: index.php');
-        } 
-    else {
+            if($user['role'] === "admin") {
+                header('Location: admin/index.php');
+            } else {
+                header('Location: index.php');
+            }
+        } else {
             $errors['mdp'] = 'Error';
         }
     } else {
@@ -41,6 +44,8 @@ debug($user);
 debug($errors);
 include('inc/header.php');
 ?>
+
+<h2 class="titrePage">Connexion</h3>
 
 <div class="wrapform">
     <form action="" class="form" method="POST" novalidate>

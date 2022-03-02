@@ -68,6 +68,7 @@ debug($errors);
 include('inc/header.php');
 ?>
 
+<h2 class="titrePage">Inscription</h3>
 <div class="wrapform">
     <form class="form" action="" method="POST" novalidate>
         <h3>Inscrivez-vous</h3>

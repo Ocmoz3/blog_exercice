@@ -1,12 +1,12 @@
 <?php
-// session_start();
+session_start();
 require('inc/pdo.php');
 require('inc/fonction.php');
 
-// $sql = "SELECT * FROM blog_articles"
 
 
-// debug($_SESSION);
+
+debug($_SESSION);
 
 
 include('inc/header.php');

@@ -18,9 +18,9 @@
                 <li class="accueil"><a href="index.php">Accueil</a></li>
                 <?php if(isLogged()) { ?>
                     <li class="accueil"><a href="logout.php">Déconnexion</a></li>
-                    <?php //if(isLoggedAdmin()) { ?>
+                    <?php if(isLoggedAdmin()) { ?>
                     <li class="accueil"><a href="admin/index.php"></a>Admin</li>
-                    <?php //} ?>
+                    <?php } ?>
                 <?php } else { ?>
                 <li class="accueil"><a href="register.php">Inscription</a></li>
                 <li class="accueil"><a href="login.php">Connexion</a></li>
