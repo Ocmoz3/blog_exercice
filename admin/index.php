@@ -13,6 +13,7 @@ include('inc/header.php');
     <nav>
         <ul>
             <li><a href="./newpost.php">Ecrire un article</a></li>
+            <li><a href="./editpost.php">Modifier un article</a></li>
         </ul>
     </nav>
 </div>

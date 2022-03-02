@@ -1,6 +1,6 @@
         <footer id="footer">
 
-        <strong>Back</strong>
+        <strong>Footer</strong>
 
         </footer>
     </body>

@@ -7,8 +7,10 @@ require('../inc/request.php');
 $errors = array();
 $success = false;
 
+$lesStatus = array('publish', 'draft');
+
 if(!empty($_POST['submitted'])) {
-    // Faille XSS
+    
     $title = trim(strip_tags($_POST['title']));
     $content = trim(strip_tags($_POST['content']));
     $user_id = trim(strip_tags($_POST['user_id']));
@@ -21,7 +23,7 @@ if(!empty($_POST['submitted'])) {
     $errors = validationStatus($errors,$status,'status',$lesStatus);
 
 }
-// debug($_SESSION);
+
 
 
 include('inc/header.php');
