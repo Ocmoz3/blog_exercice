@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul, ol {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.2rem;
+}
+.wrap{
+    max-width: 600px; width: 100%;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+#header{
+    background-color: #9edb76;
+    padding: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+#header h3 {
+    padding: 30px;
+}
+#menu ul{
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+    font-family: 'arial';
+    font-weight: bold;
+}
+#footer{
+    background-color: #9edb76;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.5rem;
+}
+.accueil{
+    border: 1px solid black;
+    font-size: 1.2rem;
+    padding: .5rem 1rem;
+}
+.wrapform {
+    margin: 0 auto;
+    max-width: 500px;
+    width: 100%;
+}
+.wrapform h3 {
+    text-align: center;
+    padding: 1rem;
+}
+.form{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+.form input {
+    /* border: 2px solid green; */
+    width: 100%;
+    padding: .5rem;
+    display: block;
+    margin: .3rem 0 .7rem 0;
+}
+.inputSubmit {
+    padding: .5rem 1rem;;
+}
+.error {
+    /* border: 1px solid blue; */
+    color: red;
+    font-size: .7rem;
+    margin-bottom: .8rem;
+}
