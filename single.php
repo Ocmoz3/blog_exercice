@@ -37,9 +37,13 @@ if(!empty($_GET['id']) && is_numeric($_GET['id'])) {
         $content = trim(strip_tags($_POST['content']));
         $user_id = trim(strip_tags($_SESSION['user']['id']));
         $status = 'new';
-        debug($_POST);
+        // debug($_POST);
 
-        if(!empty($content)) {
+        $errors = Validpseudo($errors,$content,'content',2,500);
+        // die('errors ok');
+        
+
+        if(count($errors) === 0) {
             $sql = "INSERT INTO blog_comments (id_article, content, user_id, created_at, status) VALUES (:id_article, :content, :user_id, NOW(), '$status')";
             $query = $pdo->prepare($sql);
             // $query->bindValue(':id', $id, PDO::PARAM_INT);
@@ -48,20 +52,22 @@ if(!empty($_GET['id']) && is_numeric($_GET['id'])) {
             $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
             $query->execute();
             $last_id=$pdo->lastInsertId();
-            die('insertion ok');
-            } else {
-        $errors['content'] = 'Veuillez entrer un commentaire';
-        // validComment($errors,$content,'content');
+            // die('insertion ok');
+        } else {
+                // debug($errors);
+            //     die('errors !');
+                
         }
     }
-    
+
         
 } else {
     die('empty id');
 }
-
+debug($errors);
 include('inc/header.php');
 ?>
+<?php debug($errors); ?>
 <div class="wrap_article">
     <div class="article_single">
         <h3><?= $article['title']; ?></h3>
@@ -77,7 +83,7 @@ include('inc/header.php');
 </div>
 
 
-<?php if(isLogged() || isLoggedAdmin()) { ?>
+<?php if(isLogged()) { ?>
 <form class="wrap_article" method="POST" novalidate>
 
     <label class="" for="content"><strong>Donnez votre avis :</strong></label>
@@ -85,8 +91,10 @@ include('inc/header.php');
                 <!-- Écrivez votre commentaire ici... -->
 
     <input class="comment_btn" type="submit" name="submitted">
-
-    <span class="error"><?php spanErrors($errors,'content') ?></span>
+    <span class="error">
+        <?php //debug($errors) ?>
+        <?php spanErrors($errors,'content') ?>
+    </span>
     
     <!-- <span class="errors"><?php //validComment($errors,$_POST['content'],'content') ?></span> -->
 
@@ -100,7 +108,7 @@ include('inc/header.php');
 
 
 <?php
-debug($errors);
+// debug($errors);
 
 
 include('inc/footer.php');

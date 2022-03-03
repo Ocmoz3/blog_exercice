@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./asset/css/style.css">
 </head>
 <?php
-$errors = array();
+$errors2 = array();
 $success = false;
 
 
@@ -16,9 +16,9 @@ if(!empty($_POST['submitted'])) {
     
     $search = trim(strip_tags($_POST['search']));
 
-    $errors = Validpseudo($errors,$search,'search', 1, 255);
+    $errors2 = Validpseudo($errors,$search,'search', 1, 255);
 
-    if(count($errors) === 0) {
+    if(count($errors2) === 0) {
         $sql = "INSERT INTO blog_articles (title,content, user_id, created_at, status)
                 VALUES (:title, :content, :user_id, NOW(), :status)";
         $query = $pdo->prepare($sql);
@@ -35,7 +35,7 @@ if(!empty($_POST['submitted'])) {
         die();
         
     } else {
-        $errors['mail'] = 'error credentials';
+        $errors2['mail'] = 'error credentials';
     }
 
 }
@@ -52,7 +52,7 @@ if(!empty($_POST['submitted'])) {
                 <?php if(isLogged()) { ?>
                     <li class="accueil"><a href="logout.php">Déconnexion</a></li>
                     <?php if(isLoggedAdmin()) { ?>
-                    <li class="accueil"><a href="admin/index.php"></a>Admin</li>
+                    <li class="accueil"><a href="admin/index.php">Admin</a></li>
                     <?php } ?>
                 <?php } else { ?>
                 <li class="accueil"><a href="register.php">Inscription</a></li>
@@ -68,7 +68,7 @@ if(!empty($_POST['submitted'])) {
             <form class="search" action="" method="POST" novalidate>
                 <!-- <label for="search">Recherche</label> -->
                 <input type="text" name="search" id="search" value="<?php if(!empty($_POST['search']) ) { echo $_POST['search']; } ?>">
-                <span class="error"><?php if(!empty($errors['search'])) {echo $errors['search']; } ?></span>
+                <span class="error"><?php if(!empty($errors2['search'])) {echo $errors2['search']; } ?></span>
 
                 <input type="submit" name="submitted" value="Rechercher">
             </form>
