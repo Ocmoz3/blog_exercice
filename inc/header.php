@@ -33,7 +33,7 @@ if(!empty($_POST['submitted'])) {
         $href = $urlBase . urlencode($search);
         echo 'Bravo';
         die();
-        
+
     } else {
         $errors2['mail'] = 'error credentials';
     }
@@ -60,6 +60,8 @@ if(!empty($_POST['submitted'])) {
                 <?php } ?>
             </ul>
         </nav>
+        <?php
+        debug($_SESSION); ?>
         
         <div id="search">
             <?php if($success) {

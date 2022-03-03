@@ -3,7 +3,7 @@ session_start();
 require('../inc/pdo.php');
 require('../inc/fonction.php');
 require('../inc/request.php');
-
+debug($_SESSION);
 $sql = "SELECT b_a.id, b_a.title, b_a.created_at, b_a.status, b_u.pseudo AS author
         FROM blog_articles AS b_a
         LEFT JOIN blog_users AS b_u
@@ -56,7 +56,7 @@ include('inc/header.php');
             <div class="pagin" id="ancre-<?= $article['id']; ?>">
                 <div class="wrap_article">
                 <h3 class="article_title"><a href="single.php?id=<?= $article['id']; ?>"><?= $article['title']; ?></a></h3>
-                <p class="article_content">Auteur : <?= $article['author']; ?></p>
+                <p class="author">Auteur : <?= $article['user_id']; ?></p>
                 <p class="created"><?php echo formatDate($article['created_at']); ?></p>
                 </div>
             </div>
