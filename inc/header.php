@@ -33,7 +33,7 @@ if(!empty($_POST['submitted'])) {
         $href = $urlBase . urlencode($search);
         echo 'Bravo';
         die();
-        
+
     } else {
         $errors['mail'] = 'error credentials';
     }
@@ -52,7 +52,7 @@ if(!empty($_POST['submitted'])) {
                 <?php if(isLogged()) { ?>
                     <li class="accueil"><a href="logout.php">Déconnexion</a></li>
                     <?php if(isLoggedAdmin()) { ?>
-                    <li class="accueil"><a href="admin/index.php"></a>Admin</li>
+                    <li class="accueil"><a href="admin/index.php">Admin</a></li>
                     <?php } ?>
                 <?php } else { ?>
                 <li class="accueil"><a href="register.php">Inscription</a></li>
@@ -60,6 +60,8 @@ if(!empty($_POST['submitted'])) {
                 <?php } ?>
             </ul>
         </nav>
+        <?php
+        debug($_SESSION); ?>
         
         <div id="search">
             <?php if($success) {

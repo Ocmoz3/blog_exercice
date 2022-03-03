@@ -59,12 +59,13 @@ include('inc/header.php'); ?>
         <span class="error"><?php spanErrors($errors,'title'); ?></span>
 
         <label for="content">Contenu</label>
-        <input class= "input" type="text" name="content" id="content" value="<?php 
+        <textarea name="content" id="content" value="<?php 
         if(!empty($_POST['content'])) {
             echo $_POST['content'];
         } elseif (!empty($article['content'])) { 
             echo $article['content'] ; 
-        } ?>">
+        } ?>" cols="62" rows="10"></textarea>
+        
         <span class="error"><?php spanErrors($errors,'content'); ?></span>
 
         <label for="status">Status</label>
