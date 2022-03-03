@@ -15,28 +15,49 @@ debug($_SESSION);
 // debug($articles);
 // debug($_SESSION);
 
+    // Pagination
+// nbre de reves par page
+$numPerPage = 3;
+// page current par default
+$page = 1;
+if(!empty($_GET['page'])) {
+    $page = $_GET['page'];
+}
+$offset = $page * $numPerPage - $numPerPage;
+
+$sql = "SELECT * FROM blog_articles ORDER BY created_at DESC LIMIT $numPerPage OFFSET $offset";
+$query = $pdo->prepare($sql);
+$query->execute();
+$articles = $query->fetchAll();
+
+$sql = "SELECT COUNT(id) FROM blog_articles";
+$query = $pdo->prepare($sql);
+$query->execute();
+$count = $query->fetchColumn();
+
+
 
 include('inc/header.php');
 ?>
 
 <h1 class="titrePage">Articles</h1>
 
-    <section>
-        <?php 
-            foreach ($articles as $article) {
-                // debug($article); 
-                if($article['status'] === 'publish') { ?>
+<div class="wrap">
+    <p>Nombre total d'articles : <?= $count; ?></p>
+    <?php pagination($page,$numPerPage,$count); ?>
+    <section id="articles">
+        <?php foreach ($articles as $article) { ?>
+            <div class="pagin" id="ancre-<?= $article['id']; ?>">
                 <div class="wrap_article">
-                    <h3 class="article_title"><a href="single.php?id=<?= $article['id']; ?>"><?= $article['title']; ?></a></h3>
-                    <p class="article_content">Auteur : <?= $article['author']; ?></p>
-                    <p class="created"><?php echo formatDate($article['created_at']); ?></p>
+                <h3 class="article_title"><a href="single.php?id=<?= $article['id']; ?>"><?= $article['title']; ?></a></h3>
+                <p class="author">Auteur : <?= $article['user_id']; ?></p>
+                <p class="created"><?php echo formatDate($article['created_at']); ?></p>
                 </div>
-        <?php }
-        } ?>
+            </div>
+        <?php } ?>
     </section>
-
-
-
+    <?php pagination($page,$numPerPage,$count); ?>
+</div>
 
 
 <?php
