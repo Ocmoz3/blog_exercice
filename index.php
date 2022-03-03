@@ -16,7 +16,7 @@ include('inc/header.php');
 
 <h1 class="titrePage">Articles</h1>
 
-<section>
+    <section>
         <?php 
             foreach ($articles as $article) {
                 debug($article); 
