@@ -24,6 +24,18 @@ if(!empty($_GET['id']) && is_numeric($_GET['id'])) {
         die('empty article');
     }
 
+    // $id_comment = trim(strip_tags($article['id']));
+    $sql1 = "SELECT b_c.id, b_c.content, b_c.created_at, b_c.status, b_u.pseudo AS author
+        FROM blog_comments AS b_c
+        LEFT JOIN blog_users AS b_u
+        ON b_c.user_id = b_u.id
+        WHERE b_c.id_article = :id";
+    $query = $pdo->prepare($sql1);
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
+    $query->execute();
+    $comments = $query->fetchAll();
+    debug($comments);
+
     if(!empty($_POST['submitted'])) {
         // if(isLogged()) {
         // die('entre dans cette condition');
@@ -81,6 +93,26 @@ include('inc/header.php');
         </div>
     </div>
 </div>
+
+
+<?php foreach($comments as $comment) { 
+    if(!empty($comment['content'])) {?>
+        <section>
+            <div class="wrap_article">
+                <h2>Commentaires</h2>
+                <p><?= $comment['content'] ?></p>
+                <p>Auteur : <?= $comment['author']; ?></p>
+                <div class="created_modified">
+                    <p><?= $comment['created_at']; ?></p>
+                    <p><?php if(!empty($comment['modified_at'])) { ?>
+                    Mis à jour le : <?= $comment['modified_at']; ?>
+                <?php } ?></p>
+                </div>
+            </div>
+        </section>
+    <?php } ?>
+<?php } 
+debug($comment) ?>
 
 
 <?php if(isLogged()) { ?>

@@ -7,6 +7,14 @@
     <title><?php if(!empty($title)) {echo $title;} else {echo 'Blog';} ?></title>
     <link rel="stylesheet" href="./asset/css/style.css">
 </head>
+<<<<<<< HEAD
+=======
+<?php
+
+
+$errors2 = array();
+$success = false;
+>>>>>>> 9d7ad0e7bf05e638786e1a99ef6b971ade6a43a1
 
 <body>
     

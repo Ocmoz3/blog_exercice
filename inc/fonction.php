@@ -100,15 +100,15 @@ function generateRandomString($length = 10) {
 //     return false;
 // }
 function isLogged() {
-    $allowedRoles = array('Abonné', 'Admin');
+    $allowedRoles = array('abonne', 'admin');
     if(!empty($_SESSION['user'])) {
         if(!empty($_SESSION['user']['id']) && is_numeric($_SESSION['user']['id'])) {
-            if(!empty($_SESSION['user']['pseudo']) ) {
+            if(!empty($_SESSION['user']['pseudo'])) {
                 if(!empty($_SESSION['user']['email'])) {
-                    if(!empty($_SESSION['user']['role']) && in_array($_SESSION['user']['role'],$allowedRoles)) {
+                    if(!empty($_SESSION['user']['role'])  && in_array($_SESSION['user']['role'],$allowedRoles)) {
                         if(!empty($_SESSION['user']['ip'])) {
                             if($_SESSION['user']['ip'] === $_SERVER['REMOTE_ADDR']) {
-                            return true;
+                                return true;
                             }
                         }
                     }
