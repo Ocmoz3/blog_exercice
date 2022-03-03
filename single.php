@@ -1,7 +1,8 @@
 <?php
+session_start();
 require('inc/pdo.php');
 require('inc/fonction.php');
-
+debug($_SESSION);
 if(!empty($_GET['id']) && is_numeric($_GET['id'])) {
     $id=$_GET['id'];
 
@@ -22,18 +23,20 @@ if(!empty($_GET['id']) && is_numeric($_GET['id'])) {
 } else {
     die('404');
 }
-
+if(!empty($_POST['submitted'])) {
+    //verif si isLogged
+}
 
 include('inc/header.php');
 ?>
 <div class="wrap_article">
-    <div class="acteur-border">
+    <div class="article_single">
         <h3><?= $article['title']; ?></h3>
         <p><?= $article['content']; ?></p>
         <p>Auteur : <?= $article['author']; ?></p>
         <div class="created_modified">
-        <p><?= $article['created_at']; ?></p>
-        <p><?php if(!empty($article['modified_at'])) { ?>
+            <p><?= $article['created_at']; ?></p>
+            <p><?php if(!empty($article['modified_at'])) { ?>
             Mis à jour le : <?= $article['modified_at']; ?>
         <?php } ?></p>
         </div>
@@ -44,6 +47,7 @@ include('inc/header.php');
 
     <label for="comment"><strong>Donnez votre avis :</strong></label>
     <textarea class="comment_txt" name="comment" id="" cols="100" rows="5" value="">Écrivez votre commentaire ici...</textarea>
+
     <input class="comment_btn" type="submit" name="submitted">
 
 </form>
