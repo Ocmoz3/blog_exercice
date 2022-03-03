@@ -144,6 +144,7 @@ function pagination($page,$num,$count) {
             echo '<li><a href="index.php?page='. ($page + 1 ) . '">Suivant</a></li>';
         }
     echo '</ul>';
+}
 
 // function create_form() {
 //     '<form class="wrap_article">
