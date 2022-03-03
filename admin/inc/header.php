@@ -17,11 +17,14 @@
         <nav id="menu">
             <ul>
                 <li class="accueil"><a href="../index.php">Accueil</a></li>
-                    
-                    <?php //if(isLoggedAdmin()) { ?>
+                <?php if(isLogged()) { ?>
+                    <li class="accueil"><a href="logout.php">Déconnexion</a></li>
+                    <?php if(isLoggedAdmin()) { ?>
                     <li class="accueil"><a href="index.php">Admin</a></li>
-                    <li class="accueil"><a href="../logout.php">Déconnexion</a></li>
-                    <?php //} ?>
+                    <?php } ?>
+                <?php } else { ?>
+                <!--   -->
+                <?php } ?>
             </ul>
         </nav>
     </header>
