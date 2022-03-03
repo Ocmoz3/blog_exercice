@@ -3,6 +3,9 @@ session_start();
 require('inc/pdo.php');
 require('inc/fonction.php');
 debug($_SESSION);
+
+$errors = array();
+
 if(!empty($_GET['id']) && is_numeric($_GET['id'])) {
     $id=$_GET['id'];
 
@@ -11,20 +14,50 @@ if(!empty($_GET['id']) && is_numeric($_GET['id'])) {
         LEFT JOIN blog_users AS b_u
         ON b_a.user_id = b_u.id
         WHERE b_a.id = :id";
-        //ORDER BY created_at DESC
     $query = $pdo->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_INT);
     $query->execute();
     $article = $query->fetch();
     debug($article);
+
     if(empty($article)) {
-        die('404');
+        die('empty article');
     }
+
+    if(!empty($_POST['submitted'])) {
+        // if(isLogged()) {
+        // die('entre dans cette condition');
+            //formulaire visible
+            //peut laisser un commentaire -> INSERT INTO
+        //sinon
+            //demande de connexion -> button = "Connectez-vous pour envoyer votre commentaire"
+    
+
+        $id_article = trim(strip_tags($article['id']));
+        $content = trim(strip_tags($_POST['content']));
+        $user_id = trim(strip_tags($_SESSION['user']['id']));
+        $status = 'new';
+        debug($_POST);
+
+        if(!empty($content)) {
+            $sql = "INSERT INTO blog_comments (id_article, content, user_id, created_at, status) VALUES (:id_article, :content, :user_id, NOW(), '$status')";
+            $query = $pdo->prepare($sql);
+            // $query->bindValue(':id', $id, PDO::PARAM_INT);
+            $query->bindValue(':id_article', $id_article, PDO::PARAM_INT);
+            $query->bindValue(':content', $content, PDO::PARAM_STR);
+            $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $query->execute();
+            $last_id=$pdo->lastInsertId();
+            die('insertion ok');
+            } else {
+        $errors['content'] = 'Veuillez entrer un commentaire';
+        // validComment($errors,$content,'content');
+        }
+    }
+    
+        
 } else {
-    die('404');
-}
-if(!empty($_POST['submitted'])) {
-    //verif si isLogged
+    die('empty id');
 }
 
 include('inc/header.php');
@@ -43,16 +76,31 @@ include('inc/header.php');
     </div>
 </div>
 
-<form class="wrap_article">
 
-    <label for="comment"><strong>Donnez votre avis :</strong></label>
-    <textarea class="comment_txt" name="comment" id="" cols="100" rows="5" value="">Écrivez votre commentaire ici...</textarea>
+<?php if(isLogged() || isLoggedAdmin()) { ?>
+<form class="wrap_article" method="POST" novalidate>
+
+    <label class="" for="content"><strong>Donnez votre avis :</strong></label>
+    <textarea class="content" name="content" id="" cols="100" rows="5" value=""></textarea>
+                <!-- Écrivez votre commentaire ici... -->
 
     <input class="comment_btn" type="submit" name="submitted">
 
+    <span class="error"><?php spanErrors($errors,'content') ?></span>
+    
+    <!-- <span class="errors"><?php //validComment($errors,$_POST['content'],'content') ?></span> -->
+
+    <!-- <span class="error"><?php //if(empty($content)) {
+        //echo 'Veuillez entrer un commentaire';
+    //} ?></span> -->
+
 </form>
+<?php } ?>
 
 
 
 <?php
+debug($errors);
+
+
 include('inc/footer.php');

@@ -126,7 +126,6 @@ function isLoggedAdmin(){
     }
     return false;
 }
-
 function urlRemovelast($url) {
     $url = explode('/', $url);
     array_pop($url);
@@ -134,4 +133,19 @@ function urlRemovelast($url) {
 }
 function formatDate($value) {
     return date('d/m/Y H:i', strtotime($value));
+}
+// function create_form() {
+//     '<form class="wrap_article">
+
+//     <label for="comment"><strong>Donnez votre avis :</strong></label>
+//     <textarea class="comment_txt" name="comment" id="" cols="100" rows="5" value="">Écrivez votre commentaire ici...</textarea>
+
+//     <input class="comment_btn" type="submit" name="submitted">
+
+//     </form>';
+// }
+function validComment($errors,$value,$key) { 
+    if(empty($value)) {
+    $errors[$key] = 'Veuillez entrer un commentaire';
+    }
 }
