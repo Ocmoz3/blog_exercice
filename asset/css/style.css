@@ -91,5 +91,26 @@ body{
     padding: 1rem;
 }
 .wrap_article p {
-    padding: .7rem 0;
+    padding: .4rem 0;
 }
+.created_modified {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    /* padding: 1rem; */
+    font-size: .8rem;
+    color: rgb(80, 79, 79);
+}
+textarea {
+    /* border: 2px solid red; */
+    padding: 10px;
+}
+.comment_txt {
+    margin: 1rem auto;
+}
+.comment_btn {
+    padding: .5rem 1rem;
+    border : 1px solid black;
+    background-color: #8892BF;
+}
+
