@@ -2,7 +2,7 @@
 session_start();
 require('inc/pdo.php');
 require('inc/fonction.php');
-
+debug($_SESSION);
     $sql = "SELECT b_a.id, b_a.title, b_a.created_at, b_a.status, b_u.pseudo AS author
             FROM blog_articles AS b_a
             LEFT JOIN blog_users AS b_u

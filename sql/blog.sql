@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 02 mars 2022 à 15:04
+-- Généré le : jeu. 03 mars 2022 à 09:01
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.2
 
@@ -33,7 +33,7 @@ CREATE TABLE `blog_articles` (
   `content` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
-  `modified_at` datetime NOT NULL,
+  `modified_at` datetime DEFAULT NULL,
   `status` varchar(20) NOT NULL,
   `image` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -43,12 +43,12 @@ CREATE TABLE `blog_articles` (
 --
 
 INSERT INTO `blog_articles` (`id`, `title`, `content`, `user_id`, `created_at`, `modified_at`, `status`, `image`) VALUES
-(3, 'I\'m baby enamel', 'I\'m baby enamel pin microdosing skateboard photo booth meggings gastropub cardigan try-hard, hella selfies forage. Yuccie actually keytar hammock, celiac seitan normcore hot chicken +1 adaptogen disrupt tumeric tote bag jean shorts taxidermy. Man bun vegan marfa fam keytar, DIY intelligentsia. Chicharrones iPhone occupy freegan. Four loko hashtag semiotics ennui everyday carry master cleanse venmo, green juice ethical migas tumeric lumbersexual paleo jianbing taiyaki.', 1, '2022-03-02 14:19:27', '2022-03-02 14:19:27', 'draft', NULL),
-(4, 'VHS godard coloring book', 'VHS godard coloring book sustainable. Snackwave blue bottle paleo freegan neutra intelligentsia normcore whatever pitchfork hell of vape put a bird on it. Kombucha shoreditch shaman mustache hella squid semiotics iPhone man braid knausgaard brunch dreamcatcher. Knausgaard wayfarers snackwave, food truck enamel pin deep v lomo selfies fanny pack keffiyeh. Next level subway tile kale chips pop-up whatever prism vexillologist tattooed. Church-key trust fund ethical microdosing XOXO brooklyn semiotics etsy selvage schlitz pickled.', 1, '2022-03-02 14:19:27', '2022-03-02 14:19:27', 'publish', NULL),
-(5, 'Direct trade church-key', 'Direct trade church-key sustainable authentic franzen taiyaki. Vaporware sartorial blog put a bird on it umami tofu succulents chia pabst swag direct trade poke hashtag disrupt snackwave. Farm-to-table portland beard vape, chambray offal cloud bread shabby chic cronut. Williamsburg sriracha flannel, portland brunch palo santo fashion axe tbh la croix PBR&B kale chips beard everyday carry. Roof party DIY beard flannel, polaroid normcore synth whatever swag cloud bread put a bird on it chambray cliche deep v. Chia 90\'s shaman, meditation enamel pin four loko flannel. Quinoa letterpress dreamcatcher flexitarian hexagon.', 1, '2022-03-02 14:28:59', '2022-03-02 14:28:59', 'draft', NULL),
-(6, 'Tumeric', 'Tumeric next level tattooed, put a bird on it migas pop-up ennui everyday carry crucifix. Literally plaid hammock venmo activated charcoal. Wolf skateboard kinfolk, whatever jianbing helvetica sustainable gastropub edison bulb live-edge poke. Pok pok hella shabby chic bespoke locavore street art tattooed blog scenester heirloom tumeric quinoa four dollar toast raclette tacos.', 1, '2022-03-02 14:28:59', '2022-03-02 14:28:59', 'publish', NULL),
-(7, 'Jianbing celiac', 'Jianbing celiac PBR&B crucifix microdosing franzen mumblecore health goth. Ethical retro VHS, pitchfork af mustache austin man bun deep v godard tumeric. Vape cray kale chips keffiyeh. Tilde glossier hella, small batch synth migas plaid bespoke tacos green juice tumeric.', 1, '2022-03-02 14:31:08', '2022-03-02 14:31:08', 'draft', NULL),
-(8, 'Bicycle', 'Bicycle rights small batch fam pug ethical. Forage knausgaard pok pok literally hashtag franzen authentic XOXO glossier health goth tofu butcher brunch chicharrones. Chartreuse lomo roof party seitan artisan bicycle rights hot chicken small batch normcore direct trade tattooed everyday carry hella. Vaporware mlkshk DIY intelligentsia banjo blue bottle.', 1, '2022-03-02 14:31:08', '2022-03-02 14:31:08', 'publish', NULL);
+(3, 'I\'m baby enamel', 'I\'m baby enamel pin microdosing skateboard photo booth meggings gastropub cardigan try-hard, hella selfies forage. Yuccie actually keytar hammock, celiac seitan normcore hot chicken +1 adaptogen disrupt tumeric tote bag jean shorts taxidermy. Man bun vegan marfa fam keytar, DIY intelligentsia. Chicharrones iPhone occupy freegan. Four loko hashtag semiotics ennui everyday carry master cleanse venmo, green juice ethical migas tumeric lumbersexual paleo jianbing taiyaki.', 3, '2022-03-02 14:19:27', '2022-03-02 22:22:22', 'publish', NULL),
+(4, 'VHS godard coloring book', 'VHS godard coloring book sustainable. Snackwave blue bottle paleo freegan neutra intelligentsia normcore whatever pitchfork hell of vape put a bird on it. Kombucha shoreditch shaman mustache hella squid semiotics iPhone man braid knausgaard brunch dreamcatcher. Knausgaard wayfarers snackwave, food truck enamel pin deep v lomo selfies fanny pack keffiyeh. Next level subway tile kale chips pop-up whatever prism vexillologist tattooed. Church-key trust fund ethical microdosing XOXO brooklyn semiotics etsy selvage schlitz pickled.', 3, '2022-03-02 14:19:27', NULL, 'draft', NULL),
+(5, 'Direct trade church-key', 'Direct trade church-key sustainable authentic franzen taiyaki. Vaporware sartorial blog put a bird on it umami tofu succulents chia pabst swag direct trade poke hashtag disrupt snackwave. Farm-to-table portland beard vape, chambray offal cloud bread shabby chic cronut. Williamsburg sriracha flannel, portland brunch palo santo fashion axe tbh la croix PBR&B kale chips beard everyday carry. Roof party DIY beard flannel, polaroid normcore synth whatever swag cloud bread put a bird on it chambray cliche deep v. Chia 90\'s shaman, meditation enamel pin four loko flannel. Quinoa letterpress dreamcatcher flexitarian hexagon.', 3, '2022-03-02 14:28:59', '2022-03-02 20:32:05', 'draft', NULL),
+(6, 'Tumeric', 'Tumeric next level tattooed, put a bird on it migas pop-up ennui everyday carry crucifix. Literally plaid hammock venmo activated charcoal. Wolf skateboard kinfolk, whatever jianbing helvetica sustainable gastropub edison bulb live-edge poke. Pok pok hella shabby chic bespoke locavore street art tattooed blog scenester heirloom tumeric quinoa four dollar toast raclette tacos.', 3, '2022-03-02 14:28:59', NULL, 'publish', NULL),
+(7, 'Jianbing celiac', 'Jianbing celiac PBR&B crucifix microdosing franzen mumblecore health goth. Ethical retro VHS, pitchfork af mustache austin man bun deep v godard tumeric. Vape cray kale chips keffiyeh. Tilde glossier hella, small batch synth migas plaid bespoke tacos green juice tumeric.', 3, '2022-03-02 14:31:08', '2022-03-02 19:56:47', 'publish', NULL),
+(8, 'Bicycle', 'Bicycle rights small batch fam pug ethical. Forage knausgaard pok pok literally hashtag franzen authentic XOXO glossier health goth tofu butcher brunch chicharrones. Chartreuse lomo roof party seitan artisan bicycle rights hot chicken small batch normcore direct trade tattooed everyday carry hella. Vaporware mlkshk DIY intelligentsia banjo blue bottle.', 3, '2022-03-02 14:31:08', NULL, 'draft', NULL);
 
 -- --------------------------------------------------------
 
@@ -140,4 +140,4 @@ COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

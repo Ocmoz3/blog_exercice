@@ -110,6 +110,7 @@ body{
 textarea {
     /* border: 2px solid red; */
     padding: 10px;
+    margin: 1rem;
 }
 .comment_txt {
     margin: 1rem auto;
