@@ -38,6 +38,12 @@ body{
     font-family: 'arial';
     font-weight: bold;
 }
+#search{
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    font-family: 'arial';
+}
 
 #footer{
     background-color: #8892BF;
@@ -72,7 +78,7 @@ body{
     margin: .3rem 0 .7rem 0;
 }
 .inputSubmit {
-    padding: .5rem 1rem;;
+    padding: .5rem 1rem;
 }
 .error {
     /* border: 1px solid blue; */

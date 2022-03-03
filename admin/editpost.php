@@ -4,35 +4,41 @@ require('../inc/fonction.php');
 require('../inc/request.php');
 
 
-
 $errors = array();
 $success = false;
 $lesStatus = array('publish', 'draft');
+
+if(!empty($_GET['id']) && is_numeric($_GET['id'])) {
+    $id = $_GET['id'];
+    $article = getArticleById($id);
+    if(empty($article)) { die('404'); }
+} else {
+    die('404');
+}
 
 if(!empty($_POST['submitted'])) {
     
     $title = trim(strip_tags($_POST['title']));
     $content = trim(strip_tags($_POST['content']));
-    $user_id = trim(strip_tags($_POST['user_id']));
     $status = trim(strip_tags($_POST['status']));
 
 
     $errors = Validpseudo($errors,$title,'title', 1, 255);
     $errors = Validpseudo($errors,$content,'content', 1, 65535);
-    $errors = validationId_user($errors,$user_id,'user_id');
     $errors = validationStatus($errors,$status,'status',$lesStatus);
 
-    
+
     if(count($errors) === 0) {
-        $sql = "UPDATE article SET title = :title, content = :content, status = :status, modified_at = NOW() WHERE id = :id";
+        $sql = "UPDATE blog_articles SET title = :title, content = :content, status = :status, modified_at = NOW() WHERE id = $id";
         $query = $pdo->prepare($sql);
         $query->bindValue(':title',$title, PDO::PARAM_STR);
         $query->bindValue(':content',$content, PDO::PARAM_STR);
-        $query->bindValue(':id',$id, PDO::PARAM_INT);
+        $query->bindValue(':status',$status, PDO::PARAM_STR);
         $query->execute();
         header('Location: index.php');
     }
 }
+
 
 include('inc/header.php'); ?>
 
@@ -42,7 +48,7 @@ include('inc/header.php'); ?>
         echo '<p>Bravo</p>';
     } else { ?>
 
-    <form class="form" action="" method="post" novalidate>
+    <form class="form" action="" method="post">
         <label for="title">Titre</label>
         <input class= "input" type="text" name="title" id="title" value="<?php 
         if(!empty($_POST['title'])) {

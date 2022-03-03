@@ -14,13 +14,25 @@ if(!empty($_POST['submitted'])) {
     $title = trim(strip_tags($_POST['title']));
     $content = trim(strip_tags($_POST['content']));
     $user_id = trim(strip_tags($_POST['user_id']));
-    $user_id = trim(strip_tags($_POST['status']));
+    $status = trim(strip_tags($_POST['status']));
 
 
     $errors = Validpseudo($errors,$title,'title', 1, 255);
     $errors = Validpseudo($errors,$content,'content', 1, 65535);
     $errors = validationId_user($errors,$user_id,'user_id');
     $errors = validationStatus($errors,$status,'status',$lesStatus);
+
+    if(count($errors) === 0) {
+        $sql = "INSERT INTO blog_articles (title,content, user_id, created_at, status)
+                VALUES (:title, :content, :user_id, NOW(), :status)";
+        $query = $pdo->prepare($sql);
+        $query->bindValue(':title',$title, PDO::PARAM_STR);
+        $query->bindValue(':content',$content, PDO::PARAM_STR);
+        $query->bindValue(':user_id',$user_id, PDO::PARAM_INT);
+        $query->bindValue(':status',$status, PDO::PARAM_STR);
+        $query->execute();
+        header('Location: index.php');
+    }
 
 }
 

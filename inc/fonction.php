@@ -135,3 +135,13 @@ function urlRemovelast($url) {
 function formatDate($value) {
     return date('d/m/Y H:i', strtotime($value));
 }
+function pagination($page,$num,$count) {
+    echo '<ul class="pagination">';
+        if($page > 1) {
+            echo '<li><a href="index.php?page='. ($page - 1 ) . '">Précédent</a></li>';
+        }
+        if($page*$num < $count) {
+            echo '<li><a href="index.php?page='. ($page + 1 ) . '">Suivant</a></li>';
+        }
+    echo '</ul>';
+}
